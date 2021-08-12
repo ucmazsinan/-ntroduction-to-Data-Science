@@ -1,8 +1,8 @@
 import random
 import numpy as np
 
-RandomValues = [random.randrange(1,11) for i in range(50)]
+RandomValues = [random.randrange(1,11) for i in range(50)] #Create 50 values 1 through 10
 
-Values, Frequency = np.unique(RandomValues, return_counts=True)
+Values, Frequency = np.unique(RandomValues, return_counts=True) # unpack tuple with Random Values and their frequency
 
-print(f"Values : {Values}, Their Frequencies : {Frequency}")
+print(f"Values : {Values}, Their Frequencies : {Frequency}") # display result
