@@ -1,0 +1,8 @@
+import random
+import numpy as np
+
+RandomValues = [random.randrange(1,11) for i in range(50)]
+
+Values, Frequency = np.unique(RandomValues, return_counts=True)
+
+print(f"Values : {Values}, Their Frequencies : {Frequency}")
