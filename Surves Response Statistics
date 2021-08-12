@@ -34,6 +34,7 @@ axes.set_title(title)
 axes.set(xlabel = 'Responses', ylabel = 'Frequencies')
 axes.set_ylim(top=max(Frequencies * 1.10))
 
+"Setting top of the bar special information"
 for bar, frequency in zip(axes.patches, Frequencies):
     text_x = bar.get_x() + bar.get_width() / 2
     text_y = bar.get_height()
