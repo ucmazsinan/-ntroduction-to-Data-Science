@@ -1,0 +1,44 @@
+import random
+import numpy as np
+import statistics
+import itertools
+import seaborn as sns
+import matplotlib.pyplot as plt
+"Student answer asked to rate the quality of caffeterie foods"
+Survey_Response = [random.randrange(1,6) for i in range(20)]
+"Responses and Frequencies"
+Responses, Frequencies = np.unique(Survey_Response, return_counts = True)
+Responses_X_Frequencies = Responses * Frequencies
+"Minimum Point Rate"
+print(f"Minimum Point Rate: {min(Responses )}")
+"Maximum Point Rate"
+print(f"Maximum Point Rate: {max(Responses )}")
+"Max - Min Difference"
+print(f"Max - Min Difference: {max(Responses )-min(Responses )}")
+"Average Point Rate"
+print(f"Average Point Rate: {statistics.mean(Responses )}")
+"Median Point Rate"
+print(f"Median Point Rate: {statistics.median(Responses )}")
+"Mode Point Rate"
+print(f"Mode Point Rate: {statistics.mode(Responses )}")
+"Variance Point Rate"
+print(f"Variance Point Rate: {statistics.variance(Responses )}")
+"Standart Deviation Point Rate"
+print(f"Standart Deviation Point Rate: {statistics.stdev(Responses)}")
+
+"Graph Title and Survey Responses"
+title = f"Survey Responses Graph {len(Frequencies):} Student Response"
+sns.set_style("ticks", {"xtick.major.size": 8, "ytick.major.size": 8})
+axes = sns.barplot(x = Responses, y = Frequencies, palette = 'colorblind')
+axes.set_title(title)
+axes.set(xlabel = 'Responses', ylabel = 'Frequencies')
+axes.set_ylim(top=max(Frequencies * 1.10))
+
+for bar, frequency in zip(axes.patches, Frequencies):
+    text_x = bar.get_x() + bar.get_width() / 2
+    text_y = bar.get_height()
+    text = f'{frequency:,}\n{frequency / len(Frequencies):.3%}'
+    axes.text(text_x, text_y, text,
+              fontsize = 11, ha = 'center', va = 'bottom')
+
+plt.show()
