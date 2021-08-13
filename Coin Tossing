@@ -1,0 +1,31 @@
+import random
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+FlipCoin = list(random.randrange(1,3) for i in range(20000000))
+
+TF = ['H' if i == 1 else 'F'  for i in FlipCoin ]
+
+FC, Frequencies = np.unique(TF, return_counts=True)
+
+
+title = f"Flip Coin {len(TF)} Times"
+sns.set_style('darkgrid')
+axes = sns.barplot(x = FC, y = Frequencies, palette = 'pastel')
+axes.set_title(title)
+axes.set(xlabel = 'FlipCoin', ylabel = 'Frequencies Flip Coin')
+axes.set_ylim(top = max(Frequencies * 1.30))
+
+for bar, frequencies in zip(axes.patches, Frequencies):
+    text_x = (bar.get_x() + bar.get_width()) / 2
+    text_y = bar.get_height()
+    text = f'{frequencies:}\n {frequencies/sum(Frequencies):.2%}'
+    axes.text (text_x, text_y, text,
+                  fontsize = 11 , ha = 'center' , va = 'bottom'      )
+
+plt.show()
+
+
+
+
