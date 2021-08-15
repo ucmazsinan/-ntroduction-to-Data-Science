@@ -1,0 +1,24 @@
+import random
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+SumofTwoDices = [random.randrange(2,13) for i in range(360)]
+TwoDices, Frequencies = np.unique(SumofTwoDices, return_counts=True)
+
+title = f'Sum of Two Dices Rolling {len(SumofTwoDices)}  Times'
+sns.set_style('whitegrid')
+axes = sns.barplot(x = sorted(TwoDices), y = Frequencies, palette = 'dark')
+axes.set_title(title)
+axes.set(xlabel = 'Sum of Two Dices', ylabel = 'Frequencies Sum of Two Dices')
+axes.set_ylim(top = max(Frequencies * 1.20))
+
+
+for bar, frequency in zip(axes.patches, Frequencies):
+    x_title = (bar.get_x() + bar.get_width()) / 2
+    y_title = bar.get_height()
+    text = f'{frequency}\n {frequency/sum(Frequencies):2%}'
+    axes.text(x_title, y_title, text,
+              fontsize = 6, ha = 'center', va = 'bottom')
+
+plt.show()
