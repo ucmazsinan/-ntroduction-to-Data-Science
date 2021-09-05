@@ -1,0 +1,23 @@
+Contacts = [
+    ['Mike Green','demo1@deitel.com','5555555555'],
+    ['Sue Brown','demo2@deitel.com','5555551234']
+            ]
+
+ContactsDF = pd.DataFrame(Contacts, 
+                          columns = ['Name','Email','Phone'])
+
+
+ContactsDF
+
+import re
+
+def get_formatted_phone(value):
+    result = re.fullmatch(r'(\d{3})(\d{3})(\d{4})', value)
+    return '-'.join(result.groups()) if result else value
+
+
+FormattedPhone = ContactsDF['Phone'].map(get_formatted_phone)
+
+FormattedPhone
+
+ContactsDF['Phone'] = FormattedPhone
