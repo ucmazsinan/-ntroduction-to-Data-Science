@@ -1,0 +1,18 @@
+def get_formatted_number(phone):
+    result = re.fullmatch(r'(\d{3})(\d{3})(\d{4})', phone)
+    if result:
+        part1, part2, part3 = result.groups()
+        return '(' + part1 + ')' + ' ' + part2 + '-' + part3
+    else:
+        return phone
+
+NContactDF = pd.DataFrame(Contacts, 
+                          columns = ['Name','Email','Phone'])
+NContactDF
+
+UpdatePhone = NContactDF['Phone'].map(get_formatted_number)
+UpdatePhone
+
+NContactDF['Phone'] = UpdatePhone
+
+NContactDF
