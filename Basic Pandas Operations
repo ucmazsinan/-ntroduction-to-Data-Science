@@ -1,0 +1,24 @@
+import csv           
+
+with open('StudentGrades.csv', mode = 'w', newline='') as StdGrd:
+    writer = csv.writer(StdGrd)
+    writer.writerow(["Sinan","Ucmaz",80,85,90])
+    writer.writerow(["Oyku","Buyukakin",86,75,96])
+    writer.writerow(["M.Berk","Celebi",83,81,100])
+    writer.writerow(["Belemir","Atik",70,95,90])
+
+with open('StudentGrades.csv',mode = 'r', newline = '') as StdGrd:
+    print(f'{"Firstname":<10}{"Lastname":<10}{"Grade1":>5} {"Grade2":>5} {"Grade3":>5}')
+    Reader = csv.reader(StdGrd)
+    for record in Reader:
+        Firstname, Lastname, Grade1, Grade2, Grade3 = record
+        print(f'{Firstname:<10}{Lastname:<10}{Grade1:>5} {Grade2:>5} {Grade3:>5}')
+
+import pandas as pd
+
+StdGrdDf = pd.read_csv('StudentGrades.csv',
+                names = ["Firstname","Lastname","Grade1","Grade2","Grade3"])
+
+
+StdGrdDf["Average"] = round(StdGrdDf.mean(axis = 1),2)
+StdGrdDf
