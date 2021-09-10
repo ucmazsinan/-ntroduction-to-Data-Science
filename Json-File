@@ -1,0 +1,45 @@
+
+GradeBook_Dict = {'Students':
+    [{'Firstname' : 'Sinan', 
+     'Lastname' : 'Ucmaz',
+     'Grade1' : 80,
+     'Grade2' : 85,
+     'Grade3' : 90},
+{'Firstname' : 'Oyku', 
+ 'Lastname' : 'Buyukakin',
+ 'Grade1' : 86,
+ 'Grade2' : 75,
+ 'Grade3' : 96},
+{'Firstname' : 'M.Berk', 
+ 'Lastname' : 'Celebi',
+ 'Grade1' : 83,
+ 'Grade2' : 81,
+ 'Grade3' : 100}, 
+{'Firstname' : 'Belemir', 
+   'Lastname' : 'Atik',
+   'Grade1' : 70,
+   'Grade2' : 95,
+   'Grade3' : 90}]
+  }
+
+    
+  
+import json
+
+with open ('GradeBook.json', mode = 'w') as GradeBook:
+    json.dump(GradeBook_Dict,GradeBook)
+    
+    
+with open('GradeBook.json', mode = 'r') as GradeBook:
+    Grade = json.load(GradeBook) #Deserielization
+    
+with open ('GradeBook.json', mode = 'r') as GradeBook:
+    PrettyPrint = json.dumps(Grade, indent= 3) 
+
+print(PrettyPrint)
+
+
+
+Gradesj = pd.read_json('GradeBook.json',orient='records')
+GradesDf = pd.json_normalize(GradeBook_Dict, record_path =['Students'])
+GradesDf
